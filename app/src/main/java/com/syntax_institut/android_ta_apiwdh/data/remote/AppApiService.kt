@@ -6,7 +6,7 @@ import com.syntax_institut.android_ta_apiwdh.data.model.DigimonResult
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 const val BASE_URL = "https://digimon-api.com/api/v1/"
 
@@ -23,10 +23,9 @@ interface DigimonApiService {
     @GET("digimon")
     suspend fun getDigimon(): DigimonResult
 
-    @GET("digimon/{id}")
-    suspend fun getDigimonExample(@Path("id") id: Int): DigimonResult {
-        return DigimonApi.retrofitService.getDigimonExample(id)
-    }
+    @GET("digimon")
+    suspend fun getDigimonsPage(@Query("page") page: Int): DigimonResult
+
 }
 
 object DigimonApi {

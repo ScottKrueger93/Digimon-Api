@@ -32,6 +32,5 @@ class DigimonAdapter (
         holder.binding.tvId.text = item.id.toString()
         holder.binding.tvName.text = item.name
 
-
     }
 }

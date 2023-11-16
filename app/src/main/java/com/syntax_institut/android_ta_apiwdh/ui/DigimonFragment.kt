@@ -6,17 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.syntax_institut.android_ta_apiwdh.adapter.DigimonAdapter
 import com.syntax_institut.android_ta_apiwdh.databinding.FragmentDigimonBinding
-import kotlinx.coroutines.launch
 
 
 class DigimonFragment: Fragment() {
 
     private lateinit var binding: FragmentDigimonBinding
     private val viewModel: DigimonViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +31,11 @@ class DigimonFragment: Fragment() {
         viewModel.digimon.observe(viewLifecycleOwner){
             binding.rvFragment.adapter = DigimonAdapter(it, viewModel)
         }
+
+        binding.btNextPage.setOnClickListener {
+            viewModel.loadDigimonsPage()
+        }
+
     }
 
 }

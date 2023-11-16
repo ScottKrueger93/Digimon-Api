@@ -10,6 +10,7 @@ class DigimonViewModel: ViewModel() {
 
     private val repository = Repository(DigimonApi)
     val digimon = repository.digimon
+    var counter = 0
     init {
         loadDigimon()
     }
@@ -20,9 +21,10 @@ class DigimonViewModel: ViewModel() {
         }
     }
 
-    fun loadDigimons(id: Int) {
+    fun loadDigimonsPage() {
+        counter++
         viewModelScope.launch {
-            repository.getDigimons(id)
+            repository.getnextPage(counter)
         }
     }
 
